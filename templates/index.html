@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <title>Aplikasi Prediksi Biaya Asuransi</title>
+    </head>
+    <body
+        class="
+            flex flex-col
+            justify-between
+            item-center
+            p-8
+            min-h-screen
+            bg-gradient-to-r
+            from-red-500
+            to-blue-500
+            text-gray-800
+            md:flex-row
+        "
+    >
+        <main class="bg-white p-16 rounded-lg">
+            <h1 style="color:red;" class="text-3xl font-bold mb-8">
+                Prediksi Biaya Asuransi Pian:
+            </h1>
+
+            <form
+                action="{{ url_for('predict') }}"
+                method="post"
+                class="flex flex-col"
+            >
+                <label for="Umur Pian" class="mb-2">Umur Pian</label>
+                <input
+                    type="text"
+                    name="Umur Pian"
+                    placeholder="Umur Pian"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="Jenis Kelamin" class="mt-4 mb-2"
+                    >Jenis Kelamin:</label
+                >
+                <select
+                    name="Jenis Kelamin"
+                    id="Jenis Kelamin"
+                    class="p-4 bg-gray-100 rounded-md"
+                >
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+
+                <label for="Perokok" class="mt-4 mb-2">Perokok:</label>
+                <select
+                    name="Perokok"
+                    id="Perokok"
+                    class="p-4 bg-gray-100 rounded-md"
+                >
+                    <option value="Ya">Ya</option>
+                    <option value="Tidak">Tidak</option>
+                </select>
+
+                <button
+                    type="submit"
+                    class="
+                        flex
+                        justify-center
+                        align-center
+                        mt-8
+                        p-4
+                        bg-gradient-to-r
+                        from-red-500
+                        to-blue-500
+                        text-white
+                        rounded-md
+                    "
+                >
+                    PREDIKSI SEKARANG
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-arrow-right ml-4"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </main>
+        <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+            <div class="bg-white p-16 rounded-lg">
+                <h1 style="color:blue;"class="text-3xl font-bold mb-8">
+                    Estimasi Biaya Asuransi Pian:
+                </h1>
+                <h2 style="color:red;"class="text-5xl font-bold">USD {{ insurance_cost }}</h2>
+                {% if (insurance_cost) != 0 %}
+                <div class="mt-8">
+                    <p style ="color: red;">Umur Pian       : {{ age }} Tahun</p>
+                    <p style ="color: blue;">Jenis kelamin  : {{ sex }}</p>
+                    <p style ="color: green;">Status perokok: {{ smoker }}</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="flex justify-around bg-white p-1.5 rounded-lg mt-4">
+                <img
+                    class="h-36 md:h-34"
+                    src="https://ft.ulm.ac.id/id/wp-content/uploads/2021/03/logo-ulm-2021tr.png"
+                    alt="logo ULM">
+                <div class = "text-2x1 font-bold mb-8 p-5">
+                <p style="color: red;">MUHAMMAD RIZALDY ERVAN</p>
+                <p style="color:black;">1910131310004</p>
+                <p style="color: blue;">PENDIDIKAN KOMPUTER</p>
+                <p style="color:black;">UNIVERSITAS LAMBUNG MANGKURAT</p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
